@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function RetailPage() {
   const [showCart, setShowCart] = React.useState(false);
+  const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
   const cartItems = useCartStore(state => state.items);
   const { removeItem, updateQuantity, addItem } = useCartStore();
   const navigate = useNavigate();
@@ -19,11 +20,15 @@ export function RetailPage() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <Navbar onCartClick={() => setShowCart(true)} cartItemCount={cartItems.length} />
+      <Navbar 
+        onCartClick={() => setShowCart(true)} 
+        cartItemCount={cartItems.length}
+        onCategorySelect={setSelectedCategory}
+      />
       
       <Routes>
-        <Route path="/" element={<ItemList category={null} onAddToCart={addItem} />} />
-        <Route path="/category/:category" element={<ItemList category={null} onAddToCart={addItem} />} />
+        <Route path="/" element={<ItemList category={selectedCategory} onAddToCart={addItem} />} />
+        <Route path="/category/:category" element={<ItemList category={selectedCategory} onAddToCart={addItem} />} />
       </Routes>
 
       {showCart && (

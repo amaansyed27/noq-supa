@@ -6,14 +6,14 @@ const categories = ['Food', 'Toiletries', 'Household Items'];
 interface NavbarProps {
   onCartClick: () => void;
   cartItemCount: number;
-  onCategorySelect?: (category: string | null) => void;
+  onCategorySelect: (category: string | null) => void;
   onSearchChange?: (search: string) => void;
 }
 
 export function Navbar({ 
   onCartClick, 
   cartItemCount,
-  onCategorySelect = () => {}, 
+  onCategorySelect,
   onSearchChange = () => {} 
 }: NavbarProps) {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
@@ -45,6 +45,15 @@ export function Navbar({
                   {isDropdownOpen && (
                     <div className="absolute z-10 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                       <div className="py-1" role="menu">
+                        <button
+                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={() => {
+                            onCategorySelect(null);
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          All Items
+                        </button>
                         {categories.map((category) => (
                           <button
                             key={category}

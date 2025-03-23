@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { ItemCard } from './ItemCard';
 import { supabase } from '../lib/supabase';
 import type { Database } from '../lib/database.types';
@@ -14,8 +13,7 @@ interface ItemListProps {
 }
 
 export function ItemList({ category: propCategory, onAddToCart }: ItemListProps) {
-  const { category: urlCategory } = useParams();
-  const category = urlCategory || propCategory;
+  const category = propCategory;
   
   const [items, setItems] = React.useState<Item[]>([]);
   const [loading, setLoading] = React.useState(true);
