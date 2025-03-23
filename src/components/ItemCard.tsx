@@ -28,7 +28,7 @@ export function ItemCard({ item, onAddToCart }: ItemCardProps) {
         onClick={() => setShowModal(true)}
       >
         <img
-          src={imageUrl}
+          src={imageUrl || undefined}
           alt={item.name}
           className="w-full h-48 object-cover"
         />
@@ -51,7 +51,7 @@ export function ItemCard({ item, onAddToCart }: ItemCardProps) {
           <div className="bg-white rounded-lg p-6 max-w-md w-full" onClick={e => e.stopPropagation()}>
             <h2 className="text-2xl font-bold mb-4">{item.name}</h2>
             <img
-              src={imageUrl}
+              src={imageUrl || undefined}
               alt={item.name}
               className="w-full h-48 object-cover rounded-lg mb-4"
             />

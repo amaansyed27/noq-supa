@@ -1,5 +1,4 @@
 import { supabase } from './supabase';
-import type { Database } from './database.types';
 
 interface QueueCount {
   slot_time: string;
